@@ -1,40 +1,39 @@
 import os
-def ls(path):
+
+
+
+def ls(path=os.getcwd()):
     for (root,dirs,files) in os.walk(path, topdown=True):
         print(files)
 
-
-
-
-
-
 def create_directory (path):
     path = str((os.walk(path)))
-    current = (os.getcwd())
+    current = os.getcwd()
     desktop_path = os.path.join(current,path)
     os.chdir(desktop_path)
     print("Directory changed")
+
+    """
+    os.system(f'cd {str((os.walk(path)))}')
+    print("Directory changed")
+    """
     
- 
-
-
-
-
 def remove_directory (path):
     for folder_name, subfolders, filenames in os.walk(path):
         if len(filenames) == 0 :
             os.remove(subfolders)
-            print("deleted!") 
+            print("deleted!")
+            break 
         else:
             print(f"your folder : {subfolders} is not empty! ")
 
-
-def removr_file (path , file):
+def remove_file (path , file):
     for folder_name , subfolders, filenames in os.walk(path):
         for filename in filenames:
             if filename == file :
                 os.remove(file)
                 print("deleted")
+                break
             else:
                 print("file dosent exsist!")
 
@@ -49,20 +48,22 @@ def removr_fdirectory(path):
                 os.remove(files[0])
                 files.pop[0]
             except OSError as error:
-                ...
-
+                print("operating system error")
+                continue
 
 def create_dirs (path ,name):
-    name = f"folder_{name}"
+    all_files = (os.listdir(os.curdir)).sort()
+    count = 1
+    for i in all_files:
+        if "New Folder" in i:
+            count += 1
+    name = f"folder_{name}" or "New Folder ({count})"
     new_path = os.path.join(path, name)
     os.mkdir(new_path)
-
 
 def output(file):
     for folder_name, subfolders, filenames in os.walk(file):
         print(filenames)
 
-    
-
-
-    
+def main():
+    ...

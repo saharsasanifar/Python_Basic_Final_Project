@@ -2,11 +2,11 @@ import os
 
 
 
-def ls(path=os.getcwd()):
+def ls(args.path=os.getcwd()):
     for (root,dirs,files) in os.walk(path, topdown=True):
         print(files)
 
-def change_directory (path):
+def change_directory (args.path):
     path = str((os.walk(path)))
     current = os.getcwd()
     desktop_path = os.path.join(current,path)
@@ -19,7 +19,7 @@ def change_directory (path):
     print("Directory changed")
     """
     
-def remove_directory (path):
+def remove_directory (args.path):
     for folder_name, subfolders, filenames in os.walk(path):
         if len(filenames) == 0 : # checkeing if it is empty or not
             os.remove(subfolders)
@@ -28,7 +28,7 @@ def remove_directory (path):
         else:
             print(f"your folder : {subfolders} is not empty! ")
 
-def remove_file (path , file):
+def remove_file (args.path , file):
     for folder_name , subfolders, filenames in os.walk(path):
         for filename in filenames:
             if filename == file :
@@ -38,7 +38,7 @@ def remove_file (path , file):
             else:
                 print("file dosent exsist!")
 
-def removr_fdirectory(path):
+def removr_fdirectory(args.path):
     files = []
     for root, subfolders, filenames in os.walk(path):
         for filename in filenames :
@@ -52,13 +52,13 @@ def removr_fdirectory(path):
                 print("operating system error")
                 continue
 
-def create_dirs (path ,name):
+def create_dirs (args.path ,name):
     all_files = (os.listdir(os.curdir)).sort()
     count = 1
     for i in all_files:
         if "New Folder" in i: # if user didnt type the name for files
             count += 1
-    name = f"folder_{name}" or "New Folder ({count})"
+    name = f"folder_{name}" or f"New Folder ({count})"
     new_path = os.path.join(path, name)
     os.mkdir(new_path)
 
